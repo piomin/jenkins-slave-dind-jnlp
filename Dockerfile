@@ -1,5 +1,8 @@
 FROM docker:18-dind
 MAINTAINER Piotr Minkowski <piotr.minkowski@gmail.com>
+ENV JENKINS_MASTER http://localhost:8080
+ENV JENKINS_SLAVE_NAME dind-node
+ENV JENKINS_SLAVE_SECRET ""
 ENV JENKINS_HOME /home/jenkins
 ENV JENKINS_REMOTING_VERSION 3.17
 ENV DOCKER_HOST tcp://0.0.0.0:2375
@@ -29,4 +32,4 @@ COPY entrypoint.sh /usr/local/bin/entrypoint
 VOLUME $JENKINS_HOME
 WORKDIR $JENKINS_HOME
 USER jenkins 
-ENTRYPOINT ["java", "-jar", "/usr/share/jenkins/slave.jar", "-jnlpUrl", "http://192.168.99.100:38080/computer/dind-node-1/slave-agent.jnlp", "-secret", "5664fe146104b89a1d2c78920fd9c5eebac3bd7344432e0668e366e2d3432d3e"]
+ENTRYPOINT ["/usr/local/bin/entrypoint"]
