@@ -24,7 +24,9 @@ RUN adduser -D -h $JENKINS_HOME -s /bin/sh jenkins jenkins && chmod a+rwx $JENKI
 RUN echo "jenkins ALL=(ALL) NOPASSWD: /usr/local/bin/dockerd" > /etc/sudoers.d/00jenkins && chmod 440 /etc/sudoers.d/00jenkins
 RUN echo "jenkins ALL=(ALL) NOPASSWD: /usr/local/bin/docker" > /etc/sudoers.d/01jenkins && chmod 440 /etc/sudoers.d/01jenkins
 RUN curl --create-dirs -sSLo /usr/share/jenkins/slave.jar http://repo.jenkins-ci.org/public/org/jenkins-ci/main/remoting/$JENKINS_REMOTING_VERSION/remoting-$JENKINS_REMOTING_VERSION.jar && chmod 755 /usr/share/jenkins && chmod 644 /usr/share/jenkins/slave.jar
+
+COPY entrypoint.sh /usr/local/bin/entrypoint
 VOLUME $JENKINS_HOME
 WORKDIR $JENKINS_HOME
 USER jenkins 
-ENTRYPOINT ["java", "-jar", "/usr/share/jenkins/slave.jar", "-jnlpUrl", "http://192.168.99.100:38080/computer/dind-node-1/slave-agent.jnlp", "-secret", "bee075f8fd9033ec7d89d7bf08e106d6e2588d278efc99ad19c4fb931a29108c"]
+ENTRYPOINT ["java", "-jar", "/usr/share/jenkins/slave.jar", "-jnlpUrl", "http://192.168.99.100:38080/computer/dind-node-1/slave-agent.jnlp", "-secret", "5664fe146104b89a1d2c78920fd9c5eebac3bd7344432e0668e366e2d3432d3e"]
