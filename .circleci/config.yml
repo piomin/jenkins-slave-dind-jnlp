@@ -23,4 +23,4 @@ jobs:
 workflows:
   build-image:
     jobs:
-      - build
+      - build-and-push
