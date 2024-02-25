@@ -23,4 +23,6 @@ jobs:
 workflows:
   build-image:
     jobs:
-      - build-and-push
+      - build-and-push:
+          name: build-and-push
+          context: Docker
