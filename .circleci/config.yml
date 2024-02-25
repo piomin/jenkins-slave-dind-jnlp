@@ -1,0 +1,26 @@
+version: 2.1
+
+executors:
+  machine_executor_amd64:
+    machine:
+      image: ubuntu-2204:2023.10.1
+    environment:
+      architecture: "amd64"
+      platform: "linux/amd64"
+
+orbs:
+  docker: circleci/docker@2.5.0
+
+jobs:
+  build-and-push:
+    executor: machine_executor_amd64
+    steps:
+      - checkout
+      - docker/check
+      - docker/build:
+          image: piomin/jenkins-slave-dind-jnlp
+
+workflows:
+  build-image:
+    jobs:
+      - build
