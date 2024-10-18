@@ -9,7 +9,7 @@ executors:
       platform: "linux/amd64"
 
 orbs:
-  docker: circleci/docker@2.7.2
+  docker: circleci/docker@2.8.0
 
 jobs:
   build-and-push:
