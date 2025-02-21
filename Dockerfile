@@ -1,4 +1,4 @@
-FROM docker:26-dind
+FROM docker:28-dind
 MAINTAINER Piotr Minkowski <piotr.minkowski@gmail.com>
 ENV JENKINS_MASTER http://localhost:8080
 ENV JENKINS_SLAVE_NAME dind-node
